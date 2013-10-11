@@ -14,8 +14,14 @@
   "dependencies": {
     "httpinvoke": "latest"
   },
+  "devDependencies": {
+    "chit": "0.x.x"
+  },
   "main": "x",
   "chix": {
     "name": "httpinvoke"
+  },
+  "scripts": {
+    "test": "chit"
   }
 }
