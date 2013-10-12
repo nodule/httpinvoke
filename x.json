@@ -2,7 +2,6 @@
   "name": "httpinvoke",
   "description": "HTTP Invoke Nodule",
   "version": "0.0.3",
-  "licences": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/nodule/httpinvoke.git"
@@ -123,8 +122,8 @@
         "httpinvoke": "1.x.x"
       },
       "description": "A HTTP get request",
-      "name": "get",
       "ns": "httpinvoke",
+      "name": "get",
       "fn": "var obj = {};\nobj.httpinvoke = httpinvoke;\noutput = [obj, 'httpinvoke', input.url, 'GET', input.options];\n"
     }
   ],

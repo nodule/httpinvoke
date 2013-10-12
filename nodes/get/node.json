@@ -1,5 +1,6 @@
 {
   "name":"get",
+  "ns": "httpinvoke",
   "description":"A HTTP get request",
   "require":{
     "httpinvoke":"1.x.x"
