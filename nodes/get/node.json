@@ -89,7 +89,7 @@
           },
           "input": {
             "title": "Input",
-            "type": ["string", null],
+            "type": "string",
             "description": " * **input** must be either one of:\n * undefined (default), if **inputType** is `\"auto\"` and request **headers** does not have `Content-Type`,\n * a string, if **inputType** is `\"text\"` or `\"auto\"`,\n * a bytearray - instance of [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/ArrayBuffer) or instance of [ArrayBufferView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/ArrayBufferView) or instance of [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) or instance of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) or instance of [Buffer](http://nodejs.org/api/buffer.html) or instance of [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) that has elements of type \"number\" with values ranging from `0` to `255` - if **inputType** is `\"bytearray\"` or `\"auto\"`."
           },
           "headers": {
