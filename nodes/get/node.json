@@ -22,7 +22,12 @@
           "corsExposedHeaders": {
             "title": "Exposed CORS Headers",
             "type": "array",
-            "description":" * **corsExposedHeaders** is an array of HTTP response headers to be extracted in **gotStatus** call. Default simple headers like \"Content-Type\" are always extracted. Applicable only for cross-origin requests."
+            "description":" * **corsExposedHeaders** is an array of HTTP response headers to be extracted in **gotStatus** call. Default simple headers like \"Content-Type\" are always extracted. Applicable only for cross-origin requests.",
+            "items": {
+              "title": "HTTP response header",
+              "description": "HTTP response header to be extracted in **gotStatus** call.",
+              "type": "string"
+            }
           },
           "corsCredentials": {
             "title": "CORS Credentials",
