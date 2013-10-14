@@ -1,0 +1,132 @@
+{
+  "name":"get",
+  "ns": "httpinvoke",
+  "description":"A HTTP get request",
+  "require":{
+    "httpinvoke":"1.x.x"
+  },
+  "ports":{
+    "input":{
+      "url":{
+        "type":"string",
+        "format":"uri",
+        "title":"Url Request",
+        "description":"The url to be requested.",
+        "required": true
+      },
+      "cors": {
+        "type":"object",
+        "title":"CORS",
+        "description": "CORS options as defined [here](https://github.com/jakutis/httpinvoke)",
+        "properties": {
+          "corsExposedHeaders": {
+            "title": "Exposed CORS Headers",
+            "type": "array",
+            "description":" * **corsExposedHeaders** is an array of HTTP response headers to be extracted in **gotStatus** call. Default simple headers like \"Content-Type\" are always extracted. Applicable only for cross-origin requests.",
+            "items": {
+              "title": "HTTP response header",
+              "description": "HTTP response header to be extracted in **gotStatus** call.",
+              "type": "string"
+            }
+          },
+          "corsCredentials": {
+            "title": "CORS Credentials",
+            "type": "boolean",
+            "default": false,
+            "description": "a boolean for requesting to send credentials. Applicable only for a cross-origin request. See Feature Flags section. Defaults to `false`."
+          },
+          "corsOriginHeader": {
+            "title": "CORS Origin Header",
+            "type": "string",
+            "description": "a string for the request header name for browsers with buggy CORS implementations (e.g. Android Browser 2.3.7) - which do not send the Origin request header in actual request. By default **corsOriginHeader** is not set, as it needs a proper `Access-Control-Allow-Headers` server-side header, see `dummyserver.js` for an example of server-side part of the workaround implementation."
+          }
+        }
+      },
+      "callbacks": {
+        "type":"object",
+        "title":"Callbacks",
+        "description": "Callback options as defined [here](https://github.com/jakutis/httpinvoke)",
+        "properties": {
+          "uploading": {
+            "title": "Uploading",
+            "type": "function",
+            "description": "A function that is called when HTTP request upload progress event happens. It is called with these arguments:\n 0. **current** is a number for the number of bytes currently sent;\n 0. **total** is a number for the total number of bytes to be sent."
+          },
+          "downloading": {
+            "title": "Downloading",
+            "type": "function",
+            "description": "A function that is called when HTTP response download progress event happens. It is called with these arguments:\n 0. **current** is a number for the number of bytes currently received;\n 0. **total** is a number for the total number of bytes to be received, or undefined if not known"
+          },
+          "gotStatus": {
+            "title": "Got Status",
+            "type": "function",
+            "description": "is a function that is called when HTTP response headers are received. It is called with these arguments:\n 0. **status** is a number for an HTTP response status code, either undefined, or a correct value.\n 0. **headers** is an object for HTTP response headers. Keys are lower-cased header names, values are strings."
+          },
+          "finished": {
+            "title": "Finished",
+            "type": "function",
+            "description": "is a function that is called when HTTP response is fully downloaded, or any error happens. It is called with these arguments:\n 0. **err** is null or an object that is an instance of Error, **please read error conditions section below**;\n 0. **output** is:\n * undefined, if err is not null or no response entity has been received (e.g. when **method** is `\"HEAD\"`),\n * a string, if **outputType** is `\"text\"`,\n * a bytearray - instance of [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/Uint8Array) or instance of [Buffer](http://nodejs.org/api/buffer.html) or instance of [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) that has elements of type \"number\" with values ranging from `0` to `255` - if **outputType** is `\"bytearray\"`, * any value - if **outputType** is neither `\"bytearray\"`, nor `\"text\"`, i.e. a converter has been called.\n  0. **status** is:\n * undefined, if err is not null or no correct value is available,\n * otherwise, a number for an HTTP response status code, correct value.\n 0. **headers** is:\n * undefined, if err is not null,\n * otherwise, an object for HTTP response headers. Keys are lower-cased header names, values are strings."
+          }
+        }
+      },
+      "options": {
+        "type":"object",
+        "title":"Options",
+        "description": "Options as defined [here](https://github.com/jakutis/httpinvoke)",
+        "properties": {
+          "timeout": {
+            "title": "Timeout",
+            "type": "number",
+            "description": "Number of milliseconds that specifies when finished has to be called with an Error if it was not yet called, default is 0, which means timeout errors are disabled (network stack timeouts result in network errors)."
+          },
+          "outputType": {
+            "title": "Output type",
+            "type": "string",
+            "default": "text",
+            "description": "a string for the type of the **output** argument of the **finished** option, one of `\"text\"` (default), `\"bytearray\"` or a custom value that has corresponding **converters**."
+          },
+          "inputType": {
+            "title": "Input type",
+            "type": "string",
+            "default": "auto",
+            "description": "a string for the type of the **input** option, one of `\"auto\"`(default), `\"bytearray\"`, `\"text\"` or a custom value that has corresponding **converters**. If not `\"auto\"`, **input** must not be undefined."
+
+          },
+          "input": {
+            "title": "Input",
+            "type": "string",
+            "description": " * **input** must be either one of:\n * undefined (default), if **inputType** is `\"auto\"` and request **headers** does not have `Content-Type`,\n * a string, if **inputType** is `\"text\"` or `\"auto\"`,\n * a bytearray - instance of [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/ArrayBuffer) or instance of [ArrayBufferView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/ArrayBufferView) or instance of [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) or instance of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) or instance of [Buffer](http://nodejs.org/api/buffer.html) or instance of [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) that has elements of type \"number\" with values ranging from `0` to `255` - if **inputType** is `\"bytearray\"` or `\"auto\"`."
+          },
+          "headers": {
+            "title": "Headers",
+            "type": "object",
+            "description": "an object for HTTP request headers. Keys are header names, values are strings."
+          },
+          "converters": {
+            "title": "Converters",
+            "type": "string",
+            "description": "an object to convert custom **inputType** and **outputType** values to `\"bytearray\"` or `\"text\"`. Example: `{\"json text\": JSON.stringify, \"text json\": JSON.parse}`. If you use custom **inputType**, then there must be at least one converter from that type to `\"text\"` or `\"bytearray\"`, and the other way around for **outputType**."
+          }
+        }
+      }
+    },
+    "output":{
+      "error":{
+        "title": "Error",
+        "type":"object"
+      },
+      "body":{
+        "title": "Body",
+        "type":"string"
+      },
+      "statusCode":{
+        "title": "Status Code",
+        "type":"string"
+      },
+      "headers":{
+        "title": "Reply Headers",
+        "type":"object"
+      }
+    }
+  }
+}
