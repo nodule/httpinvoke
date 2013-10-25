@@ -22,6 +22,7 @@
     "name": "httpinvoke"
   },
   "scripts": {
-    "test": "chit"
+    "test": "chit",
+    "color": "rgb(100,35,136)"
   }
 }
