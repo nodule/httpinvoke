@@ -43,6 +43,9 @@
       "require": {
         "httpinvoke": "1.x.x"
       },
+      "phrases": {
+        "active": "Requesting url {{input.url}}"
+      },
       "description": "A HTTP get request",
       "ns": "httpinvoke",
       "name": "get",

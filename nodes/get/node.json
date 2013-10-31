@@ -2,6 +2,9 @@
   "name":"get",
   "ns": "httpinvoke",
   "description":"A HTTP get request",
+  "phrases": {
+    "active": "Requesting url {{input.url}}"
+  },
   "require":{
     "httpinvoke":"1.x.x"
   },
