@@ -11,6 +11,11 @@
   },
   "nodes": [
     {
+      "dependencies": {
+        "npm": {
+          "httpinvoke": "1.x.x"
+        }
+      },
       "ports": {
         "input": {
           "url": {
@@ -39,9 +44,6 @@
             "type": "object"
           }
         }
-      },
-      "require": {
-        "httpinvoke": "1.x.x"
       },
       "phrases": {
         "active": "Requesting url {{input.url}}"

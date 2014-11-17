@@ -1,40 +1,42 @@
 {
-  "name":"get",
+  "name": "get",
   "ns": "httpinvoke",
-  "description":"A HTTP get request",
+  "description": "A HTTP get request",
   "phrases": {
     "active": "Requesting url {{input.url}}"
   },
-  "require":{
-    "httpinvoke":"1.x.x"
-  },
-  "ports":{
-    "input":{
-      "url":{
-        "type":"string",
-        "format":"url",
-        "title":"Url Request",
-        "description":"The url to be requested.",
+  "ports": {
+    "input": {
+      "url": {
+        "type": "string",
+        "format": "url",
+        "title": "Url Request",
+        "description": "The url to be requested.",
         "required": true
       }
     },
-    "output":{
-      "error":{
+    "output": {
+      "error": {
         "title": "Error",
-        "type":"object"
+        "type": "object"
       },
-      "body":{
+      "body": {
         "title": "Body",
-        "type":"string"
+        "type": "string"
       },
-      "statusCode":{
+      "statusCode": {
         "title": "Status Code",
-        "type":"string"
+        "type": "string"
       },
-      "headers":{
+      "headers": {
         "title": "Reply Headers",
-        "type":"object"
+        "type": "object"
       }
+    }
+  },
+  "dependencies": {
+    "npm": {
+      "httpinvoke": "1.x.x"
     }
   }
 }
