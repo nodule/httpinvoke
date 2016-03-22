@@ -1,4 +1,13 @@
-var obj = {};
-obj.httpinvoke = httpinvoke;
-//output = [obj, 'httpinvoke', $.url, 'GET', $.options];
-output = [obj, 'httpinvoke', $.url, 'GET'];
+output = function() {
+  httpinvoke($.url, 'GET', function (err, val) {
+    if (err) {
+      cb({error: $.create(err)})
+    } else {
+      cb({
+        body: $.create(val.body),
+        statusCode: $.create(val.statusCode),
+        headers: $.create(val.headers)
+      })
+    }
+  })
+}

@@ -51,7 +51,7 @@
       "description": "A HTTP get request",
       "ns": "httpinvoke",
       "name": "get",
-      "fn": "var obj = {};\nobj.httpinvoke = httpinvoke;\n//output = [obj, 'httpinvoke', input.url, 'GET', input.options];\noutput = [obj, 'httpinvoke', input.url, 'GET'];\n"
+      "fn": "output = function() {\n  httpinvoke($.url, 'GET', function (err, val) {\n    if (err) {\n      cb({error: $.create(err)})\n    } else {\n      cb({\n        body: $.create(val.body),\n        statusCode: $.create(val.statusCode),\n        headers: $.create(val.headers)\n      })\n    }\n  })\n}\n"
     }
   ],
   "twigs": []
